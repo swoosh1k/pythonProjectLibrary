@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{title}}</title>
+</head>
+<body>
+<h1>{{library.name}}</h1>
+<h1>{{library.text}}</h1>
+<h1>{{library.map}}</h1>
+<p>
+<h1>Авторы доступные в библиотеке:</h1>
+{% for author in library.author_library.all %}
+<h1><a href = '{{author.get_absolute_url}}'>{{author.name}}</a></h1>
+{% endfor %}
+</p>
+</body>
+</html>
