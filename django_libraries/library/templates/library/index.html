@@ -5,6 +5,9 @@
     <title>{{tilte}}</title>
 </head>
 <body>
+<a href = '{% url "register" %}' >Зарегестрироваться</a>
+<a href = '{% url "login" %}' >Войти в аккаунт</a>
+
 <h1> Библиотеки в городе</h1>
 {% for library in Libraries %}
 <h1><a href = '{{library.get_absolute_url}}'>{{library.name}}</a></h1>

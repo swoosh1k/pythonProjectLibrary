@@ -5,12 +5,27 @@
     <title>{{title}}</title>
 </head>
 <body>
+<a href = '{% url "add_post" %}'>Добавить книгу</a>
 <h1>{{author.name}}</h1>
 <img scr = '{{Author.image.url}}'>
-<h1>Книги написанные автором:</h1>
+<h1>Книги написанные автором :</h1>
+<h1>Поиск по книгам:</h1>
+<form action = '{% url "book_find" %}' method = 'get'>
+    <input type = 'search' name = 'q'>
+    <button type = 'submit'>Поиск</button>
+</form>
+<h1>И их средння цена:</h1></h>
+    {{avgprice }}
 {% for book in author.book_set.all %}
 <h1>{{book.title}}</h1>
 <a href = '{{book.get_absolute_url}}'>Подробнее</a>
 {% endfor %}
+<form action = '{% url "price_filter" author.pk %}' method = 'get'>
+{% for book in author.book_set.all %}
+    <input type = 'checkbox' name = 'price' value = '{{book.price}}'>
+                        <span>{{book.price}}</span>
+{% endfor %}
+<button type = 'submit'>Найти</button>
+</form>
 </body>
 </html>

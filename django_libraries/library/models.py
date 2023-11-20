@@ -54,11 +54,24 @@ class Book(models.Model):
     def __str__(self):
         return self.title
 
-
+    def get_absolute_url(self):
+        return reverse('book_detail', kwargs = {'pk_id': self.pk})
 
     class Meta:
         verbose_name = 'Книжка'
         verbose_name_plural = 'книги'
 
-    def get_absolute_url(self):
-        return reverse('book_detail', kwargs = {'pk_id': self.pk})
+
+class ReviewBook(models.Model):
+    name = models.CharField('Имя', max_length=150)
+    text = models.TextField('комментарий', max_length=5000)
+    book = models.ForeignKey(Book, verbose_name='Книга', on_delete=models.CASCADE)
+    email = models.EmailField()
+
+    def __str__(self):
+        return self.name
+
+    class Meta:
+        verbose_name = 'Отзыв о книге'
+        verbose_name_plural = 'Отызвы о книжках'
+

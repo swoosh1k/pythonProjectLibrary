@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{title}}</title>
+</head>
+<body>
+{% for book in books %}
+
+
+<h1>Цена за книгу:{{book.price}}</h1>
+<h1>Автор книги: {{book.author}}</h1>
+<h1>Описание:
+{{book.description|truncatewords:50}}</h1>
+    <a href = '{{book.get_absolute_url}}'>Подробнее</a>
+{% endfor %}
+</body>
+</html>

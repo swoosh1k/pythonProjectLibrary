@@ -33,3 +33,8 @@ class BookAdmin(admin.ModelAdmin):
     search_fields = ('title', )
 
 
+
+
+@admin.register(ReviewBook)
+class ReviewBookAdmin(admin.ModelAdmin):
+    list_display = ('name', 'email', 'text', 'book')
