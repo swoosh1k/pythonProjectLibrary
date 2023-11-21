@@ -164,3 +164,53 @@ class BookFind(ListView):
         return context
     def get_queryset(self):
         return Book.objects.get(title__icontains = self.request.GET.get('q'))
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+class Filter_All(ListView):
+    template_name = 'library/book_list.html'
+    context_object_name = 'books'
+    model = Book
+
+    def get_context_data(self, *, object_list=None, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['title'] = 'Книги с поставленной ценой'
+        return context
+    def get_queryset(self):
+        return Book.objects.filter(price__in = self.request.GET.getlist('price'))

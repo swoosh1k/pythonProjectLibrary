@@ -11,8 +11,22 @@
 <p>
 <h1>Авторы доступные в библиотеке:</h1>
 {% for author in library.author_library.all %}
-<h1><a href = '{{author.get_absolute_url}}'>{{author.name}}</a></h1>
+    <h1><a href = '{{author.get_absolute_url}}'>{{author.name}}</a></h1>
+    <h1>Все книги в нашей библиотеке:</h1>
+    {% for book in author.book_set.all %}
+        <h1><a href = '{{book.get_absolute_url}}'>{{book.title}}</a></h1>
+    {% endfor %}
 {% endfor %}
+    <h1>Фильтр книжек по ценам</h1>
+    <form action  = '{% url "filter_all"  %}' method = 'get'>
+        {% for author in library.author_library.all %}
+            {% for book in author.book_set.all %}
+            <input type = 'checkbox' name = 'price' value = '{{book.price}}'>
+                    {{book.price}}
+            {% endfor %}
+        {% endfor %}
+        <button type = 'submit'>Отправить</button>
+    </form>
 </p>
 </body>
 </html>
